@@ -1,0 +1,19 @@
+import csv
+from datetime import datetime
+import os
+
+filename = "focus_scores.csv"
+score = input("🎯 How focused were you today (1–10)? ")
+
+now = datetime.now()
+timestamp = now.strftime("%Y-%m-%d")
+
+file_exists = os.path.isfile(filename)
+
+with open(filename, 'a', newline='') as file:
+    writer = csv.writer(file)
+    if not file_exists:
+        writer.writerow(["Date", "Focus Score"])
+    writer.writerow([timestamp, score])
+
+print("✅ Score saved. Stay sharp!")
